@@ -2892,3 +2892,179 @@ body.ddz-fullscreen .ddz-table-topbar button {
     margin-right: -16px;
   }
 }
+
+
+/* V24: mobile browser toolbar safe layout
+   手机上 Safari/Chrome 底部工具栏会盖住网页底部，不能真的贴到 100dvh 最底。
+   这里把斗地主牌桌从“贴边全屏”改成“浏览器内可见全屏”：手牌整体上移，顶部牌桌 HUD 强制显示。 */
+:root {
+  --ddz-browser-bottom-bar: 92px;
+  --ddz-browser-top-gap: 0px;
+}
+
+body.ddz-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: #053b34;
+}
+
+body.ddz-fullscreen .ddz-real-table-card {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
+/* 强制牌桌顶部信息出现，别再空一大块只有绿布 */
+body.ddz-fullscreen .ddz-table-topbar {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: absolute;
+  z-index: 50;
+  left: 0;
+  right: 0;
+  top: env(safe-area-inset-top);
+  min-height: 44px;
+  padding: 8px 10px 0;
+  pointer-events: auto;
+}
+
+/* 通用手机：给底部浏览器工具栏留空间 */
+@media (max-width: 760px) {
+  body.ddz-fullscreen .ddz-felt-table {
+    height: 100dvh;
+    min-height: 100dvh;
+    padding:
+      calc(50px + env(safe-area-inset-top))
+      8px
+      calc(232px + env(safe-area-inset-bottom) + var(--ddz-browser-bottom-bar))
+      8px !important;
+  }
+
+  body.ddz-fullscreen .ddz-players {
+    inset:
+      calc(54px + env(safe-area-inset-top))
+      8px
+      calc(226px + env(safe-area-inset-bottom) + var(--ddz-browser-bottom-bar))
+      8px !important;
+  }
+
+  body.ddz-fullscreen .ddz-center-stage {
+    top: 38% !important;
+    width: calc(100vw - 24px) !important;
+    max-width: 430px;
+    z-index: 12;
+  }
+
+  body.ddz-fullscreen .ddz-hand-panel {
+    position: absolute;
+    left: 7px !important;
+    right: 7px !important;
+    bottom: calc(var(--ddz-browser-bottom-bar) + 6px + env(safe-area-inset-bottom)) !important;
+    z-index: 60;
+    max-height: 178px;
+    padding: 7px 7px 6px !important;
+    border-radius: 22px;
+  }
+
+  body.ddz-fullscreen .ddz-hand {
+    min-height: 70px !important;
+    max-height: 82px !important;
+    padding: 14px 4px 2px !important;
+  }
+
+  body.ddz-fullscreen .ddz-hand .ddz-card {
+    width: 42px !important;
+    height: 59px !important;
+    min-width: 42px !important;
+    margin-right: -17px !important;
+  }
+
+  body.ddz-fullscreen .ddz-play-actions {
+    grid-template-columns: 1.1fr 1fr 1fr 1fr !important;
+    gap: 5px !important;
+    margin-top: 4px !important;
+    padding: 5px !important;
+  }
+
+  body.ddz-fullscreen .ddz-play-actions button {
+    min-height: 34px !important;
+    border-radius: 12px !important;
+    font-size: 12px !important;
+  }
+
+  body.ddz-fullscreen #ddzSelectedInfo {
+    min-height: 26px !important;
+    padding: 5px 8px !important;
+    font-size: 11px !important;
+  }
+
+  body.ddz-fullscreen .ddz-hand-panel .section-head {
+    margin-bottom: 1px !important;
+  }
+
+  body.ddz-fullscreen .ddz-hand-panel .section-head h3 {
+    font-size: 14px !important;
+  }
+
+  body.ddz-fullscreen #ddzHandCount {
+    min-height: 24px !important;
+    font-size: 11px !important;
+  }
+
+  /* 对手别挤到中间，给手机竖屏留牌桌区域 */
+  body.ddz-fullscreen .ddz-player-card.seat-top {
+    top: 0 !important;
+  }
+
+  body.ddz-fullscreen .ddz-player-card.seat-left,
+  body.ddz-fullscreen .ddz-player-card.seat-right {
+    top: 37% !important;
+  }
+
+  body.ddz-fullscreen .ddz-table-info,
+  body.ddz-fullscreen .ddz-landlord-cards,
+  body.ddz-fullscreen .ddz-last-play {
+    padding: 7px 8px !important;
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+  }
+
+  body.ddz-fullscreen .ddz-mini-card {
+    min-width: 24px !important;
+    height: 32px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* 如果是加到主屏幕的 PWA/浏览器工具栏自动隐藏，可用更贴边的布局 */
+@media (display-mode: standalone) and (max-width: 760px) {
+  :root {
+    --ddz-browser-bottom-bar: 16px;
+  }
+}
+
+/* 横屏保留能用，但仍然避开底部工具栏 */
+@media (orientation: landscape) and (max-height: 520px) {
+  :root {
+    --ddz-browser-bottom-bar: 54px;
+  }
+
+  body.ddz-fullscreen .ddz-hand-panel {
+    bottom: calc(var(--ddz-browser-bottom-bar) + 4px + env(safe-area-inset-bottom)) !important;
+  }
+
+  body.ddz-fullscreen .ddz-center-stage {
+    top: 42% !important;
+  }
+}
