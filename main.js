@@ -282,6 +282,7 @@ function fillPromptTextareas() {
 }
 
 async function forceHome(message = "已返回首页。") {
+  document.body.classList.remove("ddz-fullscreen");
   unsubscribe();
   clearRoomCache();
 
@@ -320,6 +321,7 @@ async function forceHome(message = "已返回首页。") {
 }
 
 function showRoom() {
+  document.body.classList.remove("ddz-fullscreen");
   $("homeView").classList.remove("active");
   if ($("ddzView")) $("ddzView").classList.remove("active");
   $("roomView").classList.add("active");
@@ -2580,6 +2582,7 @@ function ddzPlayerName(id) {
 }
 
 function showDdzRoom() {
+  document.body.classList.add("ddz-fullscreen");
   $("homeView").classList.remove("active");
   $("roomView").classList.remove("active");
   $("ddzView").classList.add("active");
