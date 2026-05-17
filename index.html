@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>游戏大厅 · V21</title>
+  <title>游戏大厅 · V22</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
@@ -33,7 +33,7 @@
           <p class="eyebrow">GAME LOBBY</p>
           <h2>选择一个游戏。</h2>
           <p class="sub">
-            当前有“谁是卧底”和“斗地主”。斗地主加入洗牌发牌动画和更像真扑克的牌面。
+            当前有“谁是卧底”和“斗地主”。斗地主改成全屏牌桌，手牌直接放在牌桌底部。
           </p>
         </div>
       </section>
@@ -896,7 +896,27 @@
             <div id="ddzHostControls" class="ddz-controls hidden">
               <button id="btnDdzStartDeal" class="primary-btn no-margin">开始发牌</button>
             </div>
+
+
+          <section id="ddzPlayPanel" class="card ddz-hand-panel hidden">
+        <div class="section-head">
+          <div>
+            <span>HAND</span>
+            <h3>我的手牌</h3>
           </div>
+          <div id="ddzHandCount" class="pill">0 张</div>
+        </div>
+
+        <div id="ddzSelectedInfo" class="tip">请选择要出的牌。</div>
+        <div id="ddzHand" class="ddz-hand"></div>
+
+        <div class="ddz-play-actions">
+          <button id="btnDdzPlayCards" class="primary-btn no-margin">出牌</button>
+          <button id="btnDdzPass" class="normal-btn">不要</button>
+          <button id="btnDdzHint" class="normal-btn">提示</button>
+          <button id="btnDdzClearSelect" class="normal-btn">取消选择</button>
+        </div>
+          </section>          </div>
         </div>
       </section>
 
@@ -917,27 +937,7 @@
         </div>
       </section>
 
-      <section id="ddzPlayPanel" class="card ddz-hand-panel hidden">
-        <div class="section-head">
-          <div>
-            <span>HAND</span>
-            <h3>我的手牌</h3>
-          </div>
-          <div id="ddzHandCount" class="pill">0 张</div>
-        </div>
-
-        <div id="ddzSelectedInfo" class="tip">请选择要出的牌。</div>
-        <div id="ddzHand" class="ddz-hand"></div>
-
-        <div class="ddz-play-actions">
-          <button id="btnDdzPlayCards" class="primary-btn no-margin">出牌</button>
-          <button id="btnDdzPass" class="normal-btn">不要</button>
-          <button id="btnDdzHint" class="normal-btn">提示</button>
-          <button id="btnDdzClearSelect" class="normal-btn">取消选择</button>
-        </div>
-      </section>
-
-      <section class="card">
+      <section class="card ddz-log-drawer">
         <div class="section-head">
           <div>
             <span>LOG</span>
