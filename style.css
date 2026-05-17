@@ -2574,3 +2574,321 @@ body.ddz-fullscreen #ddzBidPanel.hidden {
     padding: 0 8px;
   }
 }
+
+
+/* V23: mobile-first portrait fullscreen Dou Dizhu */
+body.ddz-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+body.ddz-fullscreen #ddzView {
+  width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+}
+
+body.ddz-fullscreen .ddz-real-table-card {
+  width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
+body.ddz-fullscreen .ddz-felt-table {
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+  padding:
+    calc(48px + env(safe-area-inset-top))
+    8px
+    calc(166px + env(safe-area-inset-bottom))
+    8px;
+}
+
+body.ddz-fullscreen .ddz-table-topbar {
+  min-height: 44px;
+  align-items: center;
+  padding: calc(6px + env(safe-area-inset-top)) 10px 0;
+}
+
+body.ddz-fullscreen .ddz-table-topbar h3 {
+  font-size: 19px;
+}
+
+body.ddz-fullscreen .ddz-table-topbar span {
+  font-size: 10px;
+}
+
+body.ddz-fullscreen .ddz-table-topbar button {
+  min-width: 54px;
+  height: 34px;
+  border-radius: 14px;
+}
+
+/* 手机竖屏：牌桌中央压缩，给玩家和手牌让位置 */
+@media (orientation: portrait) and (max-width: 760px) {
+  body.ddz-fullscreen .ddz-real-table-card::before {
+    inset: 8px;
+    border-radius: 24px;
+  }
+
+  body.ddz-fullscreen .ddz-players {
+    inset:
+      calc(48px + env(safe-area-inset-top))
+      8px
+      calc(150px + env(safe-area-inset-bottom))
+      8px;
+  }
+
+  body.ddz-fullscreen .ddz-center-stage {
+    width: calc(100vw - 28px);
+    top: 42%;
+    gap: 7px;
+  }
+
+  body.ddz-fullscreen .ddz-table-info,
+  body.ddz-fullscreen .ddz-landlord-cards,
+  body.ddz-fullscreen .ddz-last-play {
+    padding: 8px 9px !important;
+    border-radius: 15px !important;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  body.ddz-fullscreen .ddz-mini-cards {
+    justify-content: center;
+    gap: 4px;
+    margin-top: 5px;
+  }
+
+  body.ddz-fullscreen .ddz-mini-card {
+    min-width: 25px;
+    height: 33px;
+    border-radius: 8px;
+    font-size: 11px;
+  }
+
+  /* 对手用更像手游的头像牌位，不占大面积 */
+  body.ddz-fullscreen .ddz-player-card {
+    width: 126px;
+    min-height: 66px;
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  body.ddz-fullscreen .ddz-player-card .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 11px;
+    font-size: 13px;
+  }
+
+  body.ddz-fullscreen .ddz-player-card .player-left {
+    gap: 6px;
+  }
+
+  body.ddz-fullscreen .ddz-player-card .name {
+    font-size: 13px;
+    max-width: 78px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  body.ddz-fullscreen .ddz-player-card .meta,
+  body.ddz-fullscreen .ddz-player-card .cards-left {
+    font-size: 10px;
+    line-height: 1.35;
+  }
+
+  body.ddz-fullscreen .ddz-role-badge {
+    min-height: 18px;
+    padding: 0 6px;
+    font-size: 10px;
+  }
+
+  body.ddz-fullscreen .ddz-player-card.seat-bottom {
+    display: none !important;
+  }
+
+  body.ddz-fullscreen .ddz-player-card.seat-top {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  body.ddz-fullscreen .ddz-player-card.seat-left {
+    left: 0;
+    top: 42%;
+    transform: translateY(-50%);
+  }
+
+  body.ddz-fullscreen .ddz-player-card.seat-right {
+    right: 0;
+    top: 42%;
+    transform: translateY(-50%);
+  }
+
+  /* 四人时上方那个人保留在顶部，中间区不会被挤爆 */
+  body.ddz-fullscreen .ddz-player-card.seat-top-left {
+    left: 4px;
+    top: 0;
+  }
+
+  body.ddz-fullscreen .ddz-player-card.seat-top-right {
+    right: 4px;
+    top: 0;
+  }
+
+  /* 手牌就是牌桌底部的一部分 */
+  body.ddz-fullscreen .ddz-hand-panel {
+    left: 6px;
+    right: 6px;
+    bottom: calc(5px + env(safe-area-inset-bottom));
+    padding: 8px 8px 7px;
+    border-radius: 22px;
+    max-height: calc(42dvh - env(safe-area-inset-bottom));
+    overflow: hidden;
+  }
+
+  body.ddz-fullscreen .ddz-hand-panel .section-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+
+  body.ddz-fullscreen .ddz-hand-panel .section-head span {
+    font-size: 9px;
+  }
+
+  body.ddz-fullscreen .ddz-hand-panel .section-head h3 {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  body.ddz-fullscreen #ddzHandCount {
+    min-height: 26px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+
+  body.ddz-fullscreen #ddzSelectedInfo {
+    min-height: 30px;
+    padding: 6px 8px;
+    border-radius: 13px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  body.ddz-fullscreen .ddz-hand {
+    min-height: 78px;
+    max-height: 94px;
+    padding: 16px 4px 3px !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  body.ddz-fullscreen .ddz-hand .ddz-card {
+    width: 43px;
+    height: 61px;
+    min-width: 43px;
+    margin-right: -17px;
+    border-radius: 10px;
+  }
+
+  body.ddz-fullscreen .ddz-hand .ddz-card.selected {
+    transform: translateY(-15px);
+  }
+
+  body.ddz-fullscreen .ddz-poker-rank,
+  body.ddz-fullscreen .ddz-poker-suit {
+    font-size: 10px;
+  }
+
+  body.ddz-fullscreen .ddz-poker-corner.top {
+    left: 4px;
+    top: 4px;
+  }
+
+  body.ddz-fullscreen .ddz-poker-corner.bottom {
+    right: 4px;
+    bottom: 4px;
+  }
+
+  body.ddz-fullscreen .ddz-poker-center {
+    font-size: 20px;
+  }
+
+  body.ddz-fullscreen .ddz-poker-joker .ddz-poker-center {
+    font-size: 10px;
+  }
+
+  body.ddz-fullscreen .ddz-play-actions {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr 1fr;
+    gap: 5px;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 16px;
+  }
+
+  body.ddz-fullscreen .ddz-play-actions button {
+    min-height: 36px;
+    padding: 0 4px;
+    border-radius: 13px;
+    font-size: 12px;
+  }
+
+  body.ddz-fullscreen #ddzBidPanel {
+    width: calc(100vw - 26px);
+    top: 44%;
+    border-radius: 22px;
+  }
+
+  body.ddz-fullscreen .ddz-bid-buttons {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 横屏也能用：更像横向牌桌，但不作为优先布局 */
+@media (orientation: landscape) and (max-height: 520px) {
+  body.ddz-fullscreen .ddz-felt-table {
+    padding:
+      calc(38px + env(safe-area-inset-top))
+      10px
+      calc(118px + env(safe-area-inset-bottom))
+      10px;
+  }
+
+  body.ddz-fullscreen .ddz-center-stage {
+    width: min(54vw, 520px);
+    top: 45%;
+  }
+
+  body.ddz-fullscreen .ddz-hand-panel {
+    left: 12%;
+    right: 12%;
+    bottom: calc(4px + env(safe-area-inset-bottom));
+    padding: 6px;
+  }
+
+  body.ddz-fullscreen .ddz-hand {
+    min-height: 70px;
+    max-height: 78px;
+    padding-top: 14px !important;
+  }
+
+  body.ddz-fullscreen .ddz-hand .ddz-card {
+    width: 44px;
+    height: 62px;
+    margin-right: -16px;
+  }
+}
