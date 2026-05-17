@@ -3068,3 +3068,73 @@ body.ddz-fullscreen .ddz-table-topbar {
     top: 42% !important;
   }
 }
+
+
+/* V25: critical fix. Hand panel must NOT live inside .ddz-center-stage.
+   If GitHub cache or HTML insertion gets weird, these rules still keep it as a real table-bottom overlay. */
+body.ddz-fullscreen .ddz-felt-table {
+  position: relative !important;
+}
+
+body.ddz-fullscreen .ddz-center-stage {
+  z-index: 20;
+  pointer-events: none;
+}
+
+body.ddz-fullscreen .ddz-center-stage > * {
+  pointer-events: auto;
+}
+
+body.ddz-fullscreen .ddz-hand-panel {
+  position: absolute !important;
+  left: 7px !important;
+  right: 7px !important;
+  top: auto !important;
+  bottom: calc(var(--ddz-browser-bottom-bar) + 6px + env(safe-area-inset-bottom)) !important;
+  z-index: 80 !important;
+  transform: none !important;
+  max-height: 178px;
+  margin: 0 !important;
+}
+
+body.ddz-fullscreen .ddz-hand-panel.hidden {
+  display: none !important;
+}
+
+/* If old cached HTML still nests hand panel inside center-stage, break it out visually by cancelling parent layout impact. */
+body.ddz-fullscreen .ddz-center-stage #ddzPlayPanel {
+  position: fixed !important;
+  left: 7px !important;
+  right: 7px !important;
+  top: auto !important;
+  bottom: calc(var(--ddz-browser-bottom-bar) + 6px + env(safe-area-inset-bottom)) !important;
+  z-index: 90 !important;
+  transform: none !important;
+}
+
+@media (orientation: portrait) and (max-width: 760px) {
+  body.ddz-fullscreen .ddz-center-stage {
+    top: 34% !important;
+  }
+
+  body.ddz-fullscreen .ddz-hand-panel {
+    max-height: 166px !important;
+  }
+
+  body.ddz-fullscreen .ddz-hand {
+    min-height: 66px !important;
+    max-height: 78px !important;
+  }
+
+  body.ddz-fullscreen .ddz-hand .ddz-card {
+    width: 40px !important;
+    height: 57px !important;
+    min-width: 40px !important;
+    margin-right: -17px !important;
+  }
+
+  body.ddz-fullscreen .ddz-player-card.seat-left,
+  body.ddz-fullscreen .ddz-player-card.seat-right {
+    top: 32% !important;
+  }
+}
