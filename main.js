@@ -2761,7 +2761,22 @@ async function loadDdzAll(roomId = state.ddzRoom?.id, playerId = state.ddzMe?.id
   }
 }
 
+
+function fixDdzHandPanelMount() {
+  const panel = $("ddzPlayPanel");
+  const felt = document.querySelector(".ddz-felt-table");
+  const center = document.querySelector(".ddz-center-stage");
+  if (!panel || !felt || !center) return;
+
+  // V25：之前手牌面板被插进 center-stage，导致它跟着中间舞台一起跑到屏幕中间。
+  // 这里兜底把它挪回牌桌底部层。
+  if (center.contains(panel)) {
+    felt.insertBefore(panel, center.nextSibling);
+  }
+}
+
 function renderDdz() {
+  fixDdzHandPanelMount();
   const { ddzRoom: room, ddzPlayers: players, ddzMe: me } = state;
   if (!room || !me) return;
 
