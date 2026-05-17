@@ -3138,3 +3138,237 @@ body.ddz-fullscreen .ddz-center-stage #ddzPlayPanel {
     top: 32% !important;
   }
 }
+
+
+/* V26: clearer cards + more realistic poker table */
+body.ddz-fullscreen .ddz-real-table-card {
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(28, 142, 111, .98) 0%, rgba(12, 99, 82, .98) 44%, rgba(3, 51, 44, 1) 100%) !important;
+  box-shadow:
+    inset 0 0 0 10px rgba(93, 54, 24, .55),
+    inset 0 0 0 17px rgba(196, 129, 50, .22),
+    inset 0 0 90px rgba(0,0,0,.38),
+    0 0 0 1px rgba(255,255,255,.12) !important;
+}
+
+body.ddz-fullscreen .ddz-real-table-card::before {
+  border: 3px solid rgba(255, 220, 142, .34) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(38, 21, 8, .26),
+    inset 0 18px 70px rgba(255,255,255,.07),
+    0 0 0 1px rgba(0,0,0,.22) !important;
+}
+
+body.ddz-fullscreen .ddz-real-table-card::after {
+  opacity: .55 !important;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 2px, transparent 2px 10px),
+    radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.18) 100%) !important;
+}
+
+/* 顶部更像牌桌 HUD */
+body.ddz-fullscreen .ddz-table-topbar {
+  color: #fff !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+}
+
+body.ddz-fullscreen .ddz-table-topbar span {
+  color: #ffdf92 !important;
+}
+
+body.ddz-fullscreen .ddz-table-topbar .danger-small {
+  background: rgba(8, 38, 34, .50) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 225, 155, .34) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 10px 25px rgba(0,0,0,.20);
+}
+
+/* 中央信息不要像白卡片，更像桌面上的压暗提示牌 */
+body.ddz-fullscreen .ddz-table-info,
+body.ddz-fullscreen .ddz-landlord-cards,
+body.ddz-fullscreen .ddz-last-play {
+  background: rgba(0, 30, 26, .58) !important;
+  border: 1px solid rgba(255, 224, 154, .28) !important;
+  color: rgba(255,255,255,.92) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 10px 30px rgba(0,0,0,.16) !important;
+}
+
+body.ddz-fullscreen .ddz-table-info b,
+body.ddz-fullscreen .ddz-landlord-cards b,
+body.ddz-fullscreen .ddz-last-play b {
+  color: #ffe49e !important;
+}
+
+/* 玩家座位更像桌边座位牌 */
+body.ddz-fullscreen .ddz-player-card {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.96), rgba(235, 246, 240, .82)) !important;
+  border: 1px solid rgba(255, 230, 165, .50) !important;
+  box-shadow:
+    0 14px 36px rgba(0,0,0,.26),
+    inset 0 1px 0 rgba(255,255,255,.78) !important;
+}
+
+body.ddz-fullscreen .ddz-player-card.active {
+  box-shadow:
+    0 0 0 4px rgba(255, 219, 120, .26),
+    0 18px 42px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.80) !important;
+}
+
+body.ddz-fullscreen .ddz-player-card.landlord {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255, 194, 69, .44), transparent 42%),
+    linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,234,178,.86)) !important;
+  border-color: rgba(255, 214, 110, .72) !important;
+}
+
+/* 手牌区不要大白块，做成贴在桌边的牌槽 */
+body.ddz-fullscreen .ddz-hand-panel {
+  background:
+    linear-gradient(180deg, rgba(10, 44, 40, .72), rgba(3, 30, 27, .88)) !important;
+  border: 1px solid rgba(255, 229, 166, .32) !important;
+  box-shadow:
+    0 -16px 48px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.15) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+body.ddz-fullscreen .ddz-hand-panel .section-head span {
+  color: #ffdf92 !important;
+}
+
+body.ddz-fullscreen .ddz-hand-panel .section-head h3 {
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.30);
+}
+
+body.ddz-fullscreen #ddzHandCount {
+  color: #23304a !important;
+  background: rgba(255,255,255,.90) !important;
+}
+
+body.ddz-fullscreen #ddzSelectedInfo {
+  background: rgba(255,255,255,.12) !important;
+  color: rgba(255,255,255,.88) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+}
+
+/* 关键：牌框加粗、牌面更白、阴影更明显，解决“看不清牌框” */
+body.ddz-fullscreen .ddz-hand .ddz-card,
+.ddz-hand .ddz-card {
+  background:
+    linear-gradient(180deg, #ffffff 0%, #fbfbff 58%, #eceff8 100%) !important;
+  border: 2px solid rgba(23, 30, 49, .72) !important;
+  outline: 1px solid rgba(255,255,255,.88);
+  box-shadow:
+    0 16px 30px rgba(0,0,0,.30),
+    inset 0 0 0 2px rgba(255,255,255,.88),
+    inset 0 -9px 16px rgba(40, 55, 90, .08) !important;
+}
+
+body.ddz-fullscreen .ddz-hand .ddz-card::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(28, 36, 58, .14);
+  pointer-events: none;
+}
+
+body.ddz-fullscreen .ddz-hand .ddz-card.selected {
+  transform: translateY(-18px) !important;
+  border-color: rgba(255, 203, 83, .98) !important;
+  box-shadow:
+    0 24px 40px rgba(0,0,0,.36),
+    0 0 0 4px rgba(255, 203, 83, .24),
+    inset 0 0 0 2px rgba(255,255,255,.90) !important;
+}
+
+body.ddz-fullscreen .ddz-poker-face {
+  color: #121827;
+}
+
+body.ddz-fullscreen .ddz-card.red .ddz-poker-face {
+  color: #d11035 !important;
+}
+
+body.ddz-fullscreen .ddz-poker-rank,
+body.ddz-fullscreen .ddz-poker-suit {
+  font-weight: 1000;
+  text-shadow: none;
+}
+
+body.ddz-fullscreen .ddz-poker-center {
+  opacity: .96;
+}
+
+/* 底牌/上一手牌的小牌也加清楚牌框 */
+body.ddz-fullscreen .ddz-mini-card {
+  background: #fff !important;
+  border: 2px solid rgba(23, 30, 49, .60) !important;
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(255,255,255,.8) !important;
+  color: #111827 !important;
+}
+
+body.ddz-fullscreen .ddz-mini-card.red {
+  color: #d11035 !important;
+}
+
+/* 操作按钮更像手游操作台 */
+body.ddz-fullscreen .ddz-play-actions {
+  background: rgba(255,255,255,.10) !important;
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+body.ddz-fullscreen .ddz-play-actions button {
+  box-shadow: 0 8px 18px rgba(0,0,0,.16);
+  font-weight: 950;
+}
+
+body.ddz-fullscreen #btnDdzPlayCards {
+  background: linear-gradient(135deg, #ffcf62, #ff8f3f) !important;
+  color: #4b2500 !important;
+}
+
+/* 竖屏下再给牌面加一点尺寸，不要小到糊成一片 */
+@media (orientation: portrait) and (max-width: 760px) {
+  body.ddz-fullscreen .ddz-hand-panel {
+    max-height: 176px !important;
+  }
+
+  body.ddz-fullscreen .ddz-hand {
+    min-height: 74px !important;
+    max-height: 88px !important;
+  }
+
+  body.ddz-fullscreen .ddz-hand .ddz-card {
+    width: 43px !important;
+    height: 62px !important;
+    min-width: 43px !important;
+    margin-right: -16px !important;
+    border-radius: 11px !important;
+  }
+
+  body.ddz-fullscreen .ddz-poker-rank,
+  body.ddz-fullscreen .ddz-poker-suit {
+    font-size: 11px !important;
+  }
+
+  body.ddz-fullscreen .ddz-poker-center {
+    font-size: 21px !important;
+  }
+
+  body.ddz-fullscreen .ddz-poker-joker .ddz-poker-center {
+    font-size: 10px !important;
+  }
+
+  body.ddz-fullscreen .ddz-center-stage {
+    top: 33% !important;
+  }
+}
