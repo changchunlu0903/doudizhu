@@ -2583,6 +2583,9 @@ function ddzPlayerName(id) {
 
 function showDdzRoom() {
   document.body.classList.add("ddz-fullscreen");
+  setTimeout(() => {
+    document.documentElement.style.setProperty("--ddz-browser-bottom-bar", `${(window.matchMedia?.("(display-mode: standalone)")?.matches || window.navigator.standalone) ? 16 : (window.innerWidth > window.innerHeight ? 54 : 92)}px`);
+  }, 60);
   $("homeView").classList.remove("active");
   $("roomView").classList.remove("active");
   $("ddzView").classList.add("active");
@@ -3385,6 +3388,27 @@ async function copyDdzInvite() {
   }
 }
 
+
+function setupDdzViewportFix() {
+  function updateDdzBars() {
+    if (!document.body.classList.contains("ddz-fullscreen")) return;
+
+    // 手机浏览器底部工具栏经常遮住网页，尤其是 GitHub Pages 在 Safari/Chrome 里。
+    // 默认保守上移 92px；如果浏览器进入类似全屏/独立模式，就稍微放下来。
+    const standalone = window.matchMedia?.("(display-mode: standalone)")?.matches || window.navigator.standalone;
+    const isLandscape = window.innerWidth > window.innerHeight;
+    const reserve = standalone ? 16 : isLandscape ? 54 : 92;
+    document.documentElement.style.setProperty("--ddz-browser-bottom-bar", `${reserve}px`);
+  }
+
+  updateDdzBars();
+  window.addEventListener("resize", updateDdzBars);
+  window.addEventListener("orientationchange", () => setTimeout(updateDdzBars, 280));
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", updateDdzBars);
+  }
+}
+
 function bindEvents() {
   $("btnCreateRoom").addEventListener("click", createRoom);
   $("btnJoinRoom").addEventListener("click", joinRoom);
@@ -3545,6 +3569,7 @@ function bindEvents() {
 async function boot() {
   bindEvents();
   setupMobileKeyboardFix();
+  setupDdzViewportFix();
   setupFloatDrag();
   if ($("floatDock")) $("floatDock").classList.add("float-bubble-mode");
   fillPromptTextareas();
